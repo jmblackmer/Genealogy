@@ -1,47 +1,59 @@
 genealogy = {};
     
-function GetHash()
+function GetMethod()
 {
   var hash = window.location.hash;
+  var method = null;
   
   if (typeof hash === "string" && hash.length > 1)
   {
-    hash = hash.substring(1).toLowerCase();
-  }
-  else
-  {
-    hash = null;
+    var match = /^#([a-z]+)([?]|$)/i.exec(hash);
+    if (match != null) method = match[1].toLowerCase();
   }
   
-  return hash;
+  return method;
 }
 
-function HandleHash()
+function GetParameter(param)
 {
-  var hash = GetHash();
+  var hash = window.location.hash;
+  var method = null;
   
-  if (typeof genealogy[hash] === 'undefined')
+  if (typeof hash === "string" && hash.length > 1)
   {
-    $.getScript("js/views/" + hash + ".js",
+    var match = new RegExp("^#.*[?&]" + param + "=([a-z0-9])+(&|$)", "i").exec(hash);
+    if (match != null) method = match[1].toLowerCase();
+  }
+  
+  return method;
+}
+
+function HandleMethod()
+{
+  var method = GetMethod();
+  
+  if (typeof genealogy[method] === 'undefined')
+  {
+    $.getScript("js/views/" + method + ".js",
       function()
       {
-        ExecHash(hash)
+        ExecMethod(method)
       })
       .fail(
         function () 
         {
-          ExecHash("error")
+          ExecMethod("error")
         });
   }
   else
   {
-    ExecHash(hash);
+    ExecMethod(method);
   }
 }
 
-function ExecHash(hash)
+function ExecMethod(method)
 {
-  var view = genealogy[hash];
+  var view = genealogy[method];
   
   if (typeof view === 'function')
   {

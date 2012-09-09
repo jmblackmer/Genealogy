@@ -5,7 +5,8 @@
   <script src="js/base.js"></script>
   <script src="js/views/Error.js"></script>
   <script type="text/javascript">
-    $(document).ready(HandleHash());
+    $(document).ready(HandleMethod());
+    $(window).bind('hashchange', function() {HandleMethod()});
   </script>
 </head>
 <body>
@@ -19,7 +20,7 @@
   <div class="Border">
     <div class="Content">
       <h1 class="Title"></h1>
-      <div class="Summary"></div>
+      <div class="Summary"><a href="#test?id=1">test</a><br /><a href="#test?id=2">test 2</a></div>
     </div>
   </div>
   <div class="Header">
