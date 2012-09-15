@@ -2,6 +2,7 @@
 <head>
   <link href="styles/Genealogy.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
+  <script type="text/javascript" src="js/inflection.js"></script>
   <script type="text/javascript">Genealogy = {}</script>
   <script type="text/javascript" src="js/base.js"></script>
   <script type="text/javascript" src="js/bind.js"></script>

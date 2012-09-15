@@ -68,7 +68,7 @@ Genealogy.Bind.SetElementValue = function(element, value)
   {
     if ((match = /([a-z]+)[.]([0-9]+[.])?Id$/i.exec($(element).attr('name'))) != null)
     {
-      $(element).attr('href', "#" + match[1] + "?id=" + value);
+      $(element).attr('href', "#" + match[1].singularize() + "?id=" + value);
     }
   }
 }

@@ -27,6 +27,11 @@ Genealogy.View.LoadTemplate = function(method, postCallback)
 
 Genealogy.View.BuildTemplate = function(xml)
 {
+  $.each($(".Content"), function()
+    {
+      $(this).empty();
+    });
+    
   $.each($(xml).contents(), function()
     {
       Genealogy.View.BuildElement($(this), Genealogy.Model, "", $(".Content")[0]);
