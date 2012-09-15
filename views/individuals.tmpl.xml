@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<template>
+  <h1 class="Title">Source</h1>
+  <div class="Summary"></div>
+  <table border="1">
+    <tr>
+      <td>Name</td>
+      <td>Listed As</td>
+    </tr>
+    <Individuals>
+      <tr>
+        <Name>
+          <td>
+            <a name="{{Individuals.Id}}"><span name="{{Value}}" /></a>
+          </td>
+        </Name>
+        <ListedAs>
+          <td>
+            <span name="{{Value}}" />
+          </td>
+        </ListedAs>
+      </tr>
+    </Individuals>
+  </table>
+</template>

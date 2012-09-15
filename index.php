@@ -1,12 +1,41 @@
 <html>
 <head>
   <link href="styles/Genealogy.css" rel="stylesheet" type="text/css" />
-  <script src="js/jquery-1.8.1.js"></script>
-  <script src="js/base.js"></script>
-  <script src="js/views/Error.js"></script>
+  <script type="text/javascript" src="js/jquery-1.8.1.js"></script>
+  <script type="text/javascript">Genealogy = {}</script>
+  <script type="text/javascript" src="js/base.js"></script>
+  <script type="text/javascript" src="js/bind.js"></script>
+  <script type="text/javascript" src="js/view.js"></script>
   <script type="text/javascript">
-    $(document).ready(HandleMethod());
-    $(window).bind('hashchange', function() {HandleMethod()});
+    var model =
+    {
+      Individuals:
+      [
+        {
+          Id: 1,
+          Name: { Id: 12, Value: "Joseph Blackmer" },
+          ListedAs: { Id: 12, Value: "Joseph Blackmer" }
+        },
+        {
+          Id: 2,
+          Name: { Id: 12, Value: "Michael Blackmer" },
+          ListedAs: { Id: 12, Value: "Michael Blackmer" }
+        }
+      ]
+    };
+    
+    function HandleMethod()
+    {
+      Genealogy.Model = model;
+      
+      Genealogy.View.LoadTemplate(
+        Genealogy.GetMethod() || "Main",
+        Genealogy.Bind.BindModelToPage
+      );
+    }
+  
+    $(document).ready(HandleMethod);
+    $(window).bind('hashchange', HandleMethod);
   </script>
 </head>
 <body>
@@ -18,10 +47,7 @@
     </form>
   </div>
   <div class="Border">
-    <div class="Content">
-      <h1 class="Title"></h1>
-      <div class="Summary"><a href="#test?id=1">test</a><br /><a href="#test?id=2">test 2</a></div>
-    </div>
+    <div class="Content"></div>
   </div>
   <div class="Header">
   </div>

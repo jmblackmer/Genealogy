@@ -1,6 +1,4 @@
-genealogy = {};
-    
-function GetMethod()
+Genealogy.GetMethod = function()
 {
   var hash = window.location.hash;
   var method = null;
@@ -14,7 +12,7 @@ function GetMethod()
   return method;
 }
 
-function GetParameter(param)
+Genealogy.GetParameter = function(param)
 {
   var hash = window.location.hash;
   var method = null;
@@ -28,27 +26,27 @@ function GetParameter(param)
   return method;
 }
 
-function HandleMethod()
+Genealogy.HandleMethod = function(postCallback)
 {
-  var method = GetMethod();
-  
-  if (typeof genealogy[method] === 'undefined')
-  {
-    $.getScript("js/views/" + method + ".js",
-      function()
-      {
-        ExecMethod(method)
-      })
-      .fail(
-        function () 
-        {
-          ExecMethod("error")
-        });
-  }
-  else
-  {
-    ExecMethod(method);
-  }
+  var method = Genealogy.GetMethod();
+  if (postCallback) postCallback(Genealogy.GetMethod());
+  // if (typeof genealogy[method] === 'undefined')
+  // {
+    // $.getScript("js/views/" + method + ".js",
+      // function()
+      // {
+        // ExecMethod(method)
+      // })
+      // .fail(
+        // function () 
+        // {
+          // ExecMethod("error")
+        // });
+  // }
+  // else
+  // {
+    // ExecMethod(method);
+  // }
 }
 
 function ExecMethod(method)
